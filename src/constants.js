@@ -7,4 +7,9 @@ export const mostCommentedFilmsListContainer = getFilmListContainer(2);
 export const filterLabels = [
   `all`, `watchlist`, `history`, `favorites`, `stats`
 ];
-
+export const filtersCounts = 5;
+export const filmCountsInList = {
+  filmListContainer: 7,
+  topRatedFilmsListContainer: 2,
+  mostCommentedFilmsListContainer: 2
+};

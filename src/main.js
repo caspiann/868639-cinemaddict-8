@@ -1,12 +1,13 @@
-import {filmCardTemplate} from './film-template';
 import {generateNumber} from './helpers';
-import {readyFilterList} from './data';
+import filmCardData from './film-card/film-data';
+import filmCardTemplate from './film-card/film-template';
 import {
   mainNavigationElement,
   filmsListContainer,
   topRatedFilmsListContainer,
-  mostCommentedFilmsListContainer,
+  mostCommentedFilmsListContainer, filmCountsInList,
 } from './constants';
+import {readyFilterList} from './filters/filter-data';
 
 const renderFilterList = (filters) => {
   mainNavigationElement.innerHTML = ``;
@@ -17,7 +18,7 @@ const renderFilterList = (filters) => {
 const renderFilmCards = (cardTemplate, container, number) => {
   container.innerHTML = ``;
   for (let i = 0; i < number; i++) {
-    container.insertAdjacentHTML(`afterbegin`, cardTemplate);
+    container.insertAdjacentHTML(`afterbegin`, cardTemplate(filmCardData()));
   }
 };
 const renderFilmCardsInFilterHandler = (evt) => {
@@ -27,9 +28,8 @@ const renderFilmCardsInFilterHandler = (evt) => {
 
 renderFilterList(readyFilterList);
 
-renderFilmCards(filmCardTemplate, filmsListContainer, 7);
-renderFilmCards(filmCardTemplate, topRatedFilmsListContainer, 2);
-renderFilmCards(filmCardTemplate, mostCommentedFilmsListContainer, 2);
+renderFilmCards(filmCardTemplate, filmsListContainer, filmCountsInList.filmListContainer);
+renderFilmCards(filmCardTemplate, topRatedFilmsListContainer, filmCountsInList.topRatedFilmsListContainer);
+renderFilmCards(filmCardTemplate, mostCommentedFilmsListContainer, filmCountsInList.mostCommentedFilmsListContainer);
 
 mainNavigationElement.addEventListener(`click`, renderFilmCardsInFilterHandler);
-
